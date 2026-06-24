@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Seats | CineSphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="book-seats.css">
+</head>
+
+<body class="booking-page">
+    <main class="booking-shell">
+        <section class="booking-hero">
+            <div id="heroBackdrop" class="booking-hero-backdrop"></div>
+
+            <div class="booking-hero-grid">
+                <div class="booking-copy">
+                    <a class="booking-back-link" href="index.html#moviesSection">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to movies
+                    </a>
+
+                    <span id="bookingModeBadge" class="booking-eyebrow">Seat Selection</span>
+
+                    <div class="booking-title-block">
+                        <h1 id="movieTitle">Choose your seats</h1>
+                        <p id="movieMeta" class="booking-subtitle">
+                            The matrix is loaded from the selected show, with only real seats displayed to the user.
+                        </p>
+                    </div>
+
+                    <div id="showtimePicker" class="showtime-picker">
+                        <div class="showtime-placeholder">Loading scheduled shows...</div>
+                    </div>
+
+                    <div class="booking-highlights">
+                        <article class="booking-highlight-card">
+                            <span>Screen Layout</span>
+                            <strong id="highlightScreen">Waiting for screen data</strong>
+                        </article>
+                        <article class="booking-highlight-card">
+                            <span>Matrix Size</span>
+                            <strong id="highlightMatrix">-</strong>
+                        </article>
+                        <article class="booking-highlight-card">
+                            <span>Seat Inventory</span>
+                            <strong id="highlightInventory">0 seats</strong>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="booking-summary-card">
+                    <div class="booking-poster-card">
+                        <img id="moviePoster" src="" alt="Movie poster">
+                    </div>
+
+                    <div class="booking-summary-stack">
+                        <div class="summary-header">
+                            <span class="summary-kicker">Current Booking</span>
+                            <strong id="summaryMovieTitle">Choose a show</strong>
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Show Time</span>
+                            <strong id="summaryShowTime">Not selected yet</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Theatre</span>
+                            <strong id="summaryTheatre">Waiting for schedule</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Screen</span>
+                            <strong id="summaryScreen">Waiting for layout</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Seat Prices</span>
+                            <strong id="summaryPrices">Choose a show</strong>
+                        </div>
+                        <div class="summary-row hold-timer-row">
+                            <span>Hold Timer</span>
+                            <strong id="holdTimerBadge" class="hold-timer-badge inactive">No seats held</strong>
+                        </div>
+
+                        <div id="statusNotice" class="summary-note">
+                            White seats are available. Confirming selection sends the lock request to the backend and
+                            holds those seats for 5 minutes.
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="booking-content">
+            <section class="booking-panel booking-layout-panel">
+                <div class="booking-panel-head">
+                    <div>
+                        <span class="booking-panel-kicker">Matrix View</span>
+                        <h2>Seat Map</h2>
+                        <p>Only actual seats are shown. Gap positions stay invisible so the layout shape is preserved.</p>
+                    </div>
+
+                    <div class="seat-stats-grid">
+                        <article class="seat-stat-card">
+                            <strong id="availableCount">0</strong>
+                            <span>Available</span>
+                        </article>
+                        <article class="seat-stat-card">
+                            <strong id="selectedCount">0</strong>
+                            <span>Selected</span>
+                        </article>
+                        <article class="seat-stat-card">
+                            <strong id="lockedCount">0</strong>
+                            <span>Held</span>
+                        </article>
+                        <article class="seat-stat-card">
+                            <strong id="bookedCount">0</strong>
+                            <span>Unavailable</span>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="seat-legend">
+                    <div class="legend-chip">
+                        <span class="legend-swatch status-AVAILABLE"></span>
+                        Available
+                    </div>
+                    <div class="legend-chip">
+                        <span class="legend-swatch status-SELECTED"></span>
+                        Selected
+                    </div>
+                    <div class="legend-chip">
+                        <span class="legend-swatch status-LOCKED"></span>
+                        Held By You
+                    </div>
+                    <div class="legend-chip">
+                        <span class="legend-swatch status-UNAVAILABLE"></span>
+                        Unavailable
+                    </div>
+                </div>
+
+                <div class="screen-ribbon-wrap">
+                    <div class="screen-ribbon-glow"></div>
+                    <div class="screen-ribbon">SCREEN THIS WAY</div>
+                </div>
+
+                <div id="seatMapWrap" class="seat-map-wrap">
+                    <div id="seatMapState" class="seat-map-state">
+                        Loading the seat matrix...
+                    </div>
+                    <div id="seatMap" class="seat-map hidden"></div>
+                </div>
+            </section>
+
+            <aside class="booking-sidebar">
+                <section class="booking-panel booking-sidebar-panel">
+                    <div class="sidebar-head">
+                        <div>
+                            <span class="booking-panel-kicker">Seat Draft</span>
+                            <h3>Selected Seats</h3>
+                        </div>
+                    </div>
+
+                    <div id="selectedSeatsEmpty" class="sidebar-empty">
+                        Tap any white seat to add it here before confirming it.
+                    </div>
+                    <div id="selectedSeatsList" class="seat-chip-list"></div>
+                </section>
+
+                <section class="booking-panel booking-sidebar-panel">
+                    <div class="sidebar-head">
+                        <div>
+                            <span class="booking-panel-kicker">Current Holds</span>
+                            <h3>Your Held Seats</h3>
+                        </div>
+                        <div id="holdCountdownPill" class="hold-countdown-pill hidden">05:00 left</div>
+                    </div>
+
+                    <div id="lockedSeatsEmpty" class="sidebar-empty">
+                        Once you confirm seats, they will appear here while the backend keeps them locked for 5 minutes.
+                    </div>
+                    <div id="lockedSeatsList" class="seat-chip-list"></div>
+                </section>
+
+                <section class="booking-panel booking-sidebar-panel">
+                    <div class="sidebar-head">
+                        <div>
+                            <span class="booking-panel-kicker">Pricing</span>
+                            <h3>Selection Summary</h3>
+                        </div>
+                    </div>
+
+                    <div id="priceBreakdown" class="price-breakdown">
+                        <div class="price-empty">Seat totals will appear here as soon as you start selecting.</div>
+                    </div>
+
+                    <div class="price-total-row">
+                        <span id="summaryTotalLabel">Selected Total</span>
+                        <strong id="summaryTotal">INR 0</strong>
+                    </div>
+
+                    <button id="lockSeatsBtn" class="btn-primary lock-btn" type="button" disabled>
+                        Hold Selected Seats
+                    </button>
+
+                    <p class="sidebar-footnote">
+                        Unavailable seats cannot be selected. Backend locks expire automatically after 5 minutes if the
+                        booking is not completed.
+                    </p>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="error-handler.js"></script>
+    <script src="book-seats.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed | CineSphere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="payment-status.css">
+</head>
+<body class="payment-status-page failure" data-payment-status="failure">
+    <main class="status-shell">
+        <section class="status-panel">
+            <header class="status-hero">
+                <div class="status-badge failure">Payment Failed</div>
+                <h1>Your payment did not complete.</h1>
+                <p class="status-copy">The booking draft is still available. Review the details below, retry when ready, or return to the home page.</p>
+            </header>
+
+            <div class="status-content">
+                <section class="highlight-grid">
+                    <article class="highlight-card">
+                        <span>Movie</span>
+                        <strong id="statusMovie">Loading...</strong>
+                    </article>
+                    <article class="highlight-card">
+                        <span>Venue</span>
+                        <strong id="statusVenue">Loading...</strong>
+                    </article>
+                    <article class="highlight-card">
+                        <span>Amount Attempted</span>
+                        <strong id="statusAmount">Loading...</strong>
+                    </article>
+                </section>
+
+                <section class="detail-layout">
+                    <article class="detail-card">
+                        <h2 class="detail-title">Seats In Draft</h2>
+                        <div class="seat-list" id="statusSeats"></div>
+                    </article>
+
+                    <article class="detail-table">
+                        <div class="detail-row">
+                            <span>Booking ID</span>
+                            <strong id="statusBookingId">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Order ID</span>
+                            <strong id="statusOrderId">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Payment ID</span>
+                            <strong id="statusPaymentId">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Show Time</span>
+                            <strong id="statusShowTime">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Booked For</span>
+                            <strong id="statusCustomer">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Seat Count</span>
+                            <strong id="statusSeatCount">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Latest Attempt</span>
+                            <strong id="statusTimestamp">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Error Code</span>
+                            <strong id="statusCode">-</strong>
+                        </div>
+                    </article>
+                </section>
+
+                <div class="status-note failure" id="statusNote">The transaction could not be completed.</div>
+
+                <div class="status-actions">
+                    <button class="status-btn primary" id="retryBtn" type="button">Retry Payment</button>
+                    <button class="status-btn secondary" type="button" data-go-home>Back to Home</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="error-handler.js"></script>
+    <script src="payment-status.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details | CineSphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="movie-details.css">
+</head>
+
+<body>
+    <main id="detailsShell">
+    </main>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+
+            <div class="form-container">
+                <div class="form-toggle">
+                    <button id="toggleLogin" class="active">Login</button>
+                    <button id="toggleRegister">Register</button>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <h2>Welcome Back</h2>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+
+                <form id="registerForm" class="auth-form hidden">
+                    <h2>Create Account</h2>
+                    <input type="text" id="regName" placeholder="Full Name" required>
+                    <input type="email" id="regEmail" placeholder="Email Address" required>
+                    <input type="tel" id="regPhone" placeholder="Phone Number" required>
+                    <input type="password" id="regPassword" placeholder="Password" required>
+                    <button type="submit" class="submit-btn">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="error-handler.js"></script>
+    <script src="movie-details.js"></script>
+</body>
+
+</html>

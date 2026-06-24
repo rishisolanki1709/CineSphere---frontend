@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineSphere | Admin Layout Designer</title>
+    <link rel="stylesheet" href="seat-layout.css">
+</head>
+
+<body>
+
+    <h2>CineSphere Screen Layout Designer</h2>
+
+    <div>
+        <label style="color: white;">Enter Screen Name</label>
+        <input type="text" id="screen-name" style="width: auto;" placeholder="Screen Name" required>
+    </div>
+    <div class="controls">
+        <div class="input-group">
+            <label>Rows</label>
+            <input type="number" id="rows" value="8" min="1" max="25">
+        </div>
+        <div class="input-group">
+            <label>Cols</label>
+            <input type="number" id="cols" value="12" min="1" max="25">
+        </div>
+        <button onclick="generateGrid()" style="margin-top: auto; padding: 8px 15px; cursor: pointer;">Generate
+            Blank</button>
+
+        <div class="toolbar">
+            <button class="tool btn-vip active" onclick="setTool('VIP', this)">VIP</button>
+            <button class="tool btn-premium" onclick="setTool('PREMIUM', this)">PREMIUM</button>
+            <button class="tool btn-regular" onclick="setTool('REGULAR', this)">REGULAR</button>
+            <button class="tool btn-gap" onclick="setTool('GAP', this)">GAP/WALKWAY</button>
+        </div>
+    </div>
+
+    <div id="grid-container"></div>
+
+    <div class="actions">
+        <button class="btn-save" onclick="saveLayout()">Save Layout</button>
+    </div>
+</body>
+<script src="seat-layout.js"></script>
+
+</html>

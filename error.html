@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unexpected Error | CineSphere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #120f14;
+            --panel: rgba(26, 21, 31, 0.92);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --text: #f6f1ea;
+            --muted: #b6aebf;
+            --accent: #f16a5b;
+            --accent-soft: rgba(241, 106, 91, 0.18);
+            --secondary: #f3d9b1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(241, 106, 91, 0.24), transparent 32%),
+                radial-gradient(circle at bottom right, rgba(243, 217, 177, 0.18), transparent 28%),
+                linear-gradient(135deg, #17121b 0%, #0e0b10 100%);
+        }
+
+        .error-shell {
+            width: min(100%, 720px);
+            padding: 32px;
+            border: 1px solid var(--panel-border);
+            border-radius: 28px;
+            background: var(--panel);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(16px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--secondary);
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 20px 0 14px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.1rem, 4vw, 3.4rem);
+            line-height: 1.05;
+        }
+
+        .lead {
+            margin: 0 0 24px;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .message-box {
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .message-box span {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .message-box strong {
+            display: block;
+            font-size: 1.02rem;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 999px;
+            padding: 14px 22px;
+            font: inherit;
+            cursor: pointer;
+            transition: transform 0.18s ease, opacity 0.18s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff8f3;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        @media (max-width: 640px) {
+            .error-shell {
+                padding: 24px;
+                border-radius: 22px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="error-shell">
+        <div class="eyebrow">Unexpected Error</div>
+        <h1>We hit a snag while loading this page.</h1>
+        <p class="lead">If the server returned a message, it will be shown below. Otherwise, you will see a safe fallback message.</p>
+
+        <section class="message-box" aria-live="polite">
+            <span>Error Message</span>
+            <strong id="errorMessage">Something went wrong. Please try again later.</strong>
+        </section>
+
+        <div class="actions">
+            <button class="btn btn-primary" type="button" id="goHomeBtn">Go to Home</button>
+            <button class="btn btn-secondary" type="button" id="goBackBtn">Try Previous Page</button>
+        </div>
+
+        <p class="meta" id="errorMeta">You can retry the previous action or return to the homepage.</p>
+    </main>
+
+    <script>
+        (function () {
+            const ERROR_STORAGE_KEY = 'cinesphere-unexpected-error';
+            const FALLBACK_MESSAGE = 'Something went wrong. Please try again later.';
+
+            function readStoredPayload() {
+                try {
+                    return JSON.parse(localStorage.getItem(ERROR_STORAGE_KEY) || 'null');
+                } catch {
+                    return null;
+                }
+            }
+
+            function getMessage() {
+                const params = new URLSearchParams(window.location.search);
+                const queryMessage = (params.get('message') || '').trim();
+                if (queryMessage) return queryMessage;
+
+                const storedPayload = readStoredPayload();
+                const storedMessage = typeof storedPayload?.message === 'string' ? storedPayload.message.trim() : '';
+                return storedMessage || FALLBACK_MESSAGE;
+            }
+
+            const message = getMessage();
+            const payload = readStoredPayload();
+            document.getElementById('errorMessage').textContent = message;
+
+            if (payload?.timestamp) {
+                const stamp = new Date(payload.timestamp);
+                if (!Number.isNaN(stamp.getTime())) {
+                    document.getElementById('errorMeta').textContent =
+                        `Captured on ${stamp.toLocaleString('en-IN')}${payload.path ? ' from ' + payload.path : ''}.`;
+                }
+            }
+
+            document.getElementById('goHomeBtn').addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+
+            document.getElementById('goBackBtn').addEventListener('click', () => {
+                if (window.history.length > 1) {
+                    window.history.back();
+                    return;
+                }
+
+                window.location.href = 'index.html';
+            });
+        })();
+    </script>
+</body>
+</html>

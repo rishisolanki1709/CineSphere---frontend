@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinesphere — Where Cinema Lives</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Film grain overlay -->
+    <div class="grain-overlay"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                CINE<span class="logo-accent">SPHERE</span>
+            </div>
+
+            <div class="search-bar">
+                <span class="search-icon">⌕</span>
+                <input type="search" placeholder="Search movies, cinemas, events…">
+            </div>
+
+            <div class="nav-right">
+                <button id="cityPickerBtn" class="city-picker-btn" type="button" aria-haspopup="dialog" aria-controls="cityModal">
+                    <span class="city-picker-kicker">Location</span>
+                    <span id="selectedCityText">Select City</span>
+                </button>
+
+                <div id="nav-auth">
+                    <button id="authBtn" class="login-btn">
+                        <span>Sign In</span>
+                    </button>
+                    <div id="profile-dropdown" class="dropdown-content" style="display:none;">
+                        <div class="user-info">
+                            <div class="user-avatar-large">👤</div>
+                            <strong id="user-name-display"></strong>
+                            <span id="user-email-display"></span>
+                            <span id="user-phone-display"></span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="my-bookings.html" class="dropdown-link">
+                            <span class="dropdown-icon">🎟</span> My Bookings
+                        </a>
+                        <a href="#" class="dropdown-link logout-link" onclick="logout()">
+                            <span class="dropdown-icon">⎋</span> Sign Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-strip">
+            <ul class="nav-links">
+                <li id="showAllMovies" class="nav-link-item active-nav">
+                    <span>Movies</span>
+                    <div class="nav-underline"></div>
+                </li>
+                <li id="showAllCinemas" class="nav-link-item">
+                    <span>Cinemas</span>
+                    <div class="nav-underline"></div>
+                </li>
+                <li class="nav-link-item">
+                    <span>Events</span>
+                    <div class="nav-underline"></div>
+                </li>
+                <li class="nav-link-item">
+                    <span>Offers</span>
+                    <div class="nav-underline"></div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">NOW SHOWING</div>
+            <h1 class="hero-title">Your Next<br><em>Favourite Film</em><br>Awaits.</h1>
+            <p class="hero-subtitle" id="heroSubtitle">Browse all active movies right now, or choose your city to narrow the lineup to theatres near you.</p>
+            <div class="hero-actions">
+                <button class="btn-primary" id="exploreMoviesBtn" type="button">
+                    Explore Movies
+                </button>
+                <button class="btn-ghost" id="chooseCityBtn" type="button">
+                    Choose City
+                </button>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="film-strip">
+                <div class="strip-hole"></div>
+                <div class="strip-hole"></div>
+                <div class="strip-hole"></div>
+                <div class="strip-hole"></div>
+                <div class="strip-hole"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+        <!-- Movies Section -->
+        <section class="movies-section" id="moviesSection">
+            <div class="section-header">
+                <div class="section-label" id="moviesSectionLabel">LIVE NOW</div>
+                <h2 class="section-title" id="moviesSectionTitle">All Active Movies Right Now</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="movie-grid" id="movieGrid">
+                <!-- Skeleton loaders -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </section>
+
+        <!-- Cinemas Section -->
+        <section class="cinemas-section" id="cinemasSection">
+            <div class="section-header">
+                <div class="section-label">NEARBY</div>
+                <h2 class="section-title">Premium Cinemas</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="cinema-list-shell" id="cinemaGrid">
+                <div class="cinema-list-state">
+                    <div class="movie-grid-state-eyebrow">CINEMAS</div>
+                    <h3 class="movie-grid-state-title">Loading theatres...</h3>
+                    <p class="movie-grid-state-copy">Fetching theatres available for your current city selection.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">◈ CINE<span>SPHERE</span></div>
+            <p class="footer-tagline">Where Cinema Lives.</p>
+            <div class="footer-line"></div>
+            <p class="footer-copy">© 2025 Cinesphere. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="cityModal" class="city-modal" aria-hidden="true">
+        <div class="city-modal-backdrop" data-close-city-modal></div>
+        <div class="city-modal-panel" role="dialog" aria-modal="true" aria-labelledby="cityModalTitle">
+            <button class="city-modal-close" id="closeCityModalBtn" type="button" aria-label="Close city selection">&times;</button>
+
+            <div class="city-modal-header">
+                <div class="city-modal-kicker">CHOOSE YOUR CITY</div>
+                <h3 class="city-modal-title" id="cityModalTitle">Find movies playing near you</h3>
+                <p class="city-modal-copy">Search your city, pick a popular one, or continue browsing all active movies across cities.</p>
+            </div>
+
+            <div class="city-search-shell">
+                <input type="search" id="citySearchInput" class="city-search-input" placeholder="Search for your city">
+            </div>
+
+            <div class="city-modal-actions">
+                <button id="showAllCitiesMoviesBtn" class="city-all-btn" type="button">Browse All Active Movies</button>
+                <span id="citySelectionStatus" class="city-selection-status">No city selected</span>
+            </div>
+
+            <div class="city-picker-block">
+                <div class="city-block-header">
+                    <span class="city-block-kicker">POPULAR CITIES</span>
+                    <span class="city-block-meta">Quick picks</span>
+                </div>
+                <div id="popularCitiesGrid" class="city-popular-grid"></div>
+            </div>
+
+            <div class="city-picker-block">
+                <div class="city-block-header">
+                    <span class="city-block-kicker">ALL CITIES</span>
+                    <span id="cityResultsMeta" class="city-block-meta"></span>
+                </div>
+                <div id="cityResults" class="city-results-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="authModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="close-btn" id="closeBtn">✕</button>
+
+            <div class="modal-brand">
+                <span class="modal-brand-icon">◈</span>
+                <span>CINESPHERE</span>
+            </div>
+
+            <div class="form-toggle">
+                <button id="toggleLogin" class="toggle-btn active">Sign In</button>
+                <button id="toggleRegister" class="toggle-btn">Register</button>
+                <div class="toggle-slider"></div>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <p class="form-subtitle">Welcome back. Sign in to continue.</p>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>Sign In</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </form>
+
+            <form id="registerForm" class="auth-form hidden">
+                <p class="form-subtitle">Create your account to get started.</p>
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="you@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="regPhone" placeholder="+91 98765 43210" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>Create Account</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast"></div>
+
+    <script src="error-handler.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

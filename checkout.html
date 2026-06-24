@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | CineSphere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="checkout.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body class="checkout-page">
+    <main class="checkout-shell">
+        <section class="checkout-hero">
+            <p class="checkout-kicker">Secure Checkout</p>
+            <h1>Review your booking before payment.</h1>
+            <p class="checkout-copy">Your selected seats are prepared for payment. Confirm the details below and continue with Razorpay.</p>
+        </section>
+
+        <section class="checkout-grid">
+            <article class="checkout-card">
+                <div class="card-head">
+                    <div>
+                        <p class="card-label">Movie</p>
+                        <h2 id="displayMovie">Loading booking...</h2>
+                    </div>
+                    <span class="booking-chip" id="displayBookingId">Booking pending</span>
+                </div>
+
+                <div class="summary-grid">
+                    <div class="summary-tile">
+                        <span class="tile-label">Theatre</span>
+                        <strong id="displayTheatre">-</strong>
+                    </div>
+                    <div class="summary-tile">
+                        <span class="tile-label">Show Time</span>
+                        <strong id="displayShowTime">-</strong>
+                    </div>
+                    <div class="summary-tile">
+                        <span class="tile-label">Seats</span>
+                        <strong id="displaySeatCount">-</strong>
+                    </div>
+                    <div class="summary-tile">
+                        <span class="tile-label">Booked For</span>
+                        <strong id="displayCustomer">-</strong>
+                    </div>
+                </div>
+
+                <div class="seat-section">
+                    <div class="seat-section-head">
+                        <p class="card-label">Selected Seats</p>
+                        <span id="displaySeatSummary">-</span>
+                    </div>
+                    <div class="seat-pill-list" id="displaySeatChips"></div>
+                </div>
+            </article>
+
+            <aside class="checkout-card payment-card">
+                <div class="card-head compact">
+                    <div>
+                        <p class="card-label">Payment</p>
+                        <h2>Amount payable</h2>
+                    </div>
+                </div>
+
+                <div class="amount-panel">
+                    <span class="amount-value" id="displayAmount">&#8377;0.00</span>
+                    <p>Protected checkout handled through Razorpay.</p>
+                </div>
+
+                <div id="paymentHoldTimer" class="payment-timer-card" hidden>
+                    <div class="payment-timer-copy">
+                        <span class="payment-timer-label">Seat hold remaining</span>
+                        <strong id="paymentHoldCountdown">05:00</strong>
+                    </div>
+                    <p id="paymentHoldNote">Finish payment before the hold expires or these seats may be released.</p>
+                </div>
+
+                <div class="trust-list">
+                    <div class="trust-item">
+                        <span class="trust-dot"></span>
+                        <span>Your booking reference is linked to this payment.</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-dot"></span>
+                        <span>Successful payments will verify instantly before confirmation.</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-dot"></span>
+                        <span>If anything fails, your draft stays available so you can retry.</span>
+                    </div>
+                </div>
+
+                <div class="checkout-message" id="checkoutMessage" hidden></div>
+
+                <div class="checkout-actions">
+                    <button id="payBtn" class="primary-btn" type="button">
+                        <span id="payBtnLabel">Pay with Razorpay</span>
+                    </button>
+                    <button id="backBtn" class="secondary-btn" type="button">Go Back</button>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <script src="error-handler.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

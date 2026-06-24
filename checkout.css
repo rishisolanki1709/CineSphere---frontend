@@ -1,0 +1,368 @@
+.checkout-page {
+    min-height: 100vh;
+    margin: 0;
+    color: #f7f0e8;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(211, 84, 98, 0.28), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(201, 151, 58, 0.18), transparent 30%),
+        linear-gradient(180deg, #090b11 0%, #10131b 52%, #090b11 100%);
+}
+
+.checkout-shell {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 56px 0 72px;
+}
+
+.checkout-hero {
+    margin-bottom: 28px;
+}
+
+.checkout-kicker,
+.card-label {
+    margin: 0 0 10px;
+    color: #f0c060;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.checkout-hero h1,
+.checkout-card h2 {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+}
+
+.checkout-hero h1 {
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    max-width: 620px;
+}
+
+.checkout-copy {
+    max-width: 640px;
+    margin: 14px 0 0;
+    color: #aeb5c6;
+    line-height: 1.7;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
+    gap: 22px;
+}
+
+.checkout-card {
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(26, 29, 40, 0.96), rgba(12, 14, 22, 0.92));
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.checkout-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(240, 192, 96, 0.65), transparent);
+}
+
+.card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card-head.compact {
+    margin-bottom: 18px;
+}
+
+.checkout-card h2 {
+    font-size: 1.75rem;
+}
+
+.booking-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(209, 73, 91, 0.14);
+    border: 1px solid rgba(209, 73, 91, 0.38);
+    color: #ffcad4;
+    font-size: 0.88rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.summary-tile,
+.amount-panel,
+.seat-section {
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.summary-tile {
+    padding: 18px;
+}
+
+.tile-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #8f97aa;
+    font-size: 0.82rem;
+}
+
+.summary-tile strong {
+    display: block;
+    color: #fff4e6;
+    line-height: 1.5;
+}
+
+.seat-section {
+    margin-top: 18px;
+    padding: 20px;
+}
+
+.seat-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    color: #bfc6d8;
+}
+
+.seat-section-head .card-label {
+    margin: 0;
+}
+
+.seat-pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.seat-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(240, 192, 96, 0.12);
+    border: 1px solid rgba(240, 192, 96, 0.26);
+    color: #ffe6a7;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.seat-pill.muted {
+    color: #c1c8d9;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.payment-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.amount-panel {
+    padding: 24px;
+    margin-bottom: 18px;
+}
+
+.payment-timer-card {
+    margin-bottom: 18px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(240, 192, 96, 0.08);
+    border: 1px solid rgba(240, 192, 96, 0.22);
+}
+
+.payment-timer-card.warning {
+    background: rgba(209, 73, 91, 0.12);
+    border-color: rgba(209, 73, 91, 0.24);
+}
+
+.payment-timer-card.expired {
+    background: rgba(209, 73, 91, 0.16);
+    border-color: rgba(209, 73, 91, 0.36);
+}
+
+.payment-timer-copy {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.payment-timer-label {
+    color: #f0c060;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+#paymentHoldCountdown {
+    color: #fff6dd;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+#paymentHoldNote {
+    margin: 0;
+    color: #d7deee;
+    line-height: 1.6;
+}
+
+.amount-value {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff7eb;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.3rem, 4vw, 3.2rem);
+    line-height: 1;
+}
+
+.amount-panel p {
+    margin: 0;
+    color: #aeb5c6;
+}
+
+.trust-list {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #d7deee;
+    line-height: 1.6;
+}
+
+.trust-dot {
+    width: 10px;
+    height: 10px;
+    margin-top: 8px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #f0c060, #d1495b);
+    flex-shrink: 0;
+}
+
+.checkout-message {
+    padding: 14px 16px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.checkout-message.info {
+    background: rgba(74, 158, 255, 0.12);
+    border: 1px solid rgba(74, 158, 255, 0.28);
+    color: #d7ecff;
+}
+
+.checkout-message.error {
+    background: rgba(209, 73, 91, 0.16);
+    border: 1px solid rgba(209, 73, 91, 0.34);
+    color: #ffd5db;
+}
+
+.checkout-actions {
+    display: grid;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.primary-btn,
+.secondary-btn {
+    width: 100%;
+    min-height: 54px;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.primary-btn {
+    border: none;
+    background: linear-gradient(135deg, #d1495b, #f0c060);
+    color: #110d14;
+    box-shadow: 0 16px 30px rgba(209, 73, 91, 0.28);
+}
+
+.primary-btn:hover:not(:disabled),
+.secondary-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.primary-btn:disabled,
+.secondary-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.68;
+}
+
+.primary-btn.is-loading {
+    position: relative;
+    color: rgba(17, 13, 20, 0.84);
+}
+
+.secondary-btn {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: #f7f0e8;
+}
+
+@media (max-width: 900px) {
+    .checkout-shell {
+        width: min(100% - 24px, 980px);
+        padding: 36px 0 48px;
+    }
+
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .checkout-card {
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    .card-head,
+    .seat-section-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-chip {
+        white-space: normal;
+    }
+}

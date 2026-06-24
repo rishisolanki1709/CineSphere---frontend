@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinesphere | My Bookings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="my-bookings.css">
+</head>
+
+<body class="bookings-body">
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
+    <div class="grain-layer"></div>
+
+    <header class="topbar">
+        <a href="index.html" class="brand-mark" aria-label="Go to home page">
+            <span class="brand-icon"></span>
+            <span class="brand-text">Cinesphere</span>
+        </a>
+
+        <div class="topbar-actions">
+            <button id="refreshButton" class="action-button action-secondary" type="button">Refresh</button>
+            <a href="index.html" class="action-button action-primary">Browse Movies</a>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-copy">
+                <p class="hero-eyebrow">Private Booking Archive</p>
+                <h1>Every ticket, every showtime, all in one cinematic ledger.</h1>
+                <p class="hero-description" id="heroDescription">
+                    Track your confirmed nights out, pending plans, and every screening you have lined up next.
+                </p>
+
+                <div class="identity-row">
+                    <div class="identity-chip">
+                        <span class="identity-label">Member</span>
+                        <strong id="visitorName">Guest Viewer</strong>
+                    </div>
+                    <div class="identity-chip subdued">
+                        <span class="identity-label">Contact</span>
+                        <strong id="visitorEmail">Sign in to load your bookings</strong>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="spotlight-card" id="spotlightCard">
+                <div class="spotlight-tag">Next On Screen</div>
+                <h2>Loading your latest highlight...</h2>
+                <p>Your nearest booking will appear here once the page syncs with the server.</p>
+            </aside>
+        </section>
+
+        <section class="summary-grid" id="summaryGrid" aria-label="Booking summary">
+            <article class="summary-card">
+                <span>Total Bookings</span>
+                <strong>0</strong>
+                <p>Waiting for your archive to load.</p>
+            </article>
+            <article class="summary-card">
+                <span>Upcoming Shows</span>
+                <strong>0</strong>
+                <p>Your next cinema trip will appear here.</p>
+            </article>
+            <article class="summary-card">
+                <span>Confirmed Tickets</span>
+                <strong>0</strong>
+                <p>Confirmed bookings are counted live.</p>
+            </article>
+            <article class="summary-card">
+                <span>Total Spend</span>
+                <strong>INR 0</strong>
+                <p>Your booking total updates automatically.</p>
+            </article>
+        </section>
+
+        <section class="control-panel">
+            <div class="search-panel">
+                <label class="search-label" for="searchInput">Search by movie, theatre, screen, or booking ID</label>
+                <input id="searchInput" class="search-input" type="search" placeholder="Search your bookings">
+            </div>
+
+            <div class="filter-panel">
+                <div class="filter-header">
+                    <span>View</span>
+                    <small id="resultCountLabel">0 bookings</small>
+                </div>
+                <div id="filterChips" class="filter-chips" role="tablist" aria-label="Booking filters"></div>
+            </div>
+        </section>
+
+        <section id="pageState" class="page-state" aria-live="polite"></section>
+
+        <section class="bookings-stage">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">Booking Reel</p>
+                    <h2>Your personal screening timeline</h2>
+                </div>
+                <p class="section-copy">Seats are intentionally hidden for now because this response does not include them.</p>
+            </div>
+
+            <div id="bookingsGrid" class="bookings-grid"></div>
+        </section>
+    </main>
+
+    <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="error-handler.js"></script>
+    <script src="my-bookings.js"></script>
+</body>
+
+</html>
